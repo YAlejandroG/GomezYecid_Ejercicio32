@@ -3,46 +3,49 @@
 #include <cmath>
 using namespace std;
 
-double D = 1;
-double S = 1;
-double T = 1;
-double Xmin = -1;
+double T = 40;
+double rho = 0.001;
+double Tmax = 6;
+double dT = 0.01;
 double Xmax = 1;
-int Nt = 450;
-int Nx = 30;
+double dX = 0.01;
+int Nt = Tmax/dT;
+int Nx = Xmax/dX;
 
-int FTCS(int Nt,int Nx,string nombre);
+int ONDA(int Nt,int Nx,string nombre);
 
 int main(){
-    string nombre = "difusion.dat";
-    FTCS(Nt,Nx,nombre);
+    
+    ONDA(Nt,Nx,"onda.dat");
     
     return 0;
 }
 
-int FTCS(int Nt,int Nx,string nombre){
+int ONDA(int Nt,int Nx,string nombre){
     
-    double **PSI = new double *[Nt+1];
-    for (int i=0;i<=Nt;i++){
-        PSI[i] =new double[Nx+1];
+    double x;
+    
+    double **Onda = new double *[Nt+1];
+    for(int i=0;i<=Nt;i++){
+        Onda[i] =new double[Nx+1];
     }
-    
-    double dT = T/Nt;
-    double dX = (Xmax-Xmin)/Nx;
-    
-    for(int i=0; i<=Nt; i++){
-        for(int j=0; j<=Nx; j++){
-            if(i==0){
-                PSI[i][j] = 0;
-            }
-            
-            if(j==0 | j==Nx){
-                PSI[i][j] = 0;
-            }
+
+    for(int j=0;j<=Nj;j++){
+        x = j*dX;
+        if(j<=0.8*Xmax){
+            Onda[0][j] = 1.25*x/Xmax;
+        }
+        else{
+            Onda[0][j] = 5-5*x/Xmax;
         }
     }
     
-    for(int i=0; i<Nt; i++){
+    for(int i=1;i<=Nt;i++){
+        Onda[i][0] = 0;
+        Onda[i][Nx] = 0;
+    }
+    
+    for(int i=0;i<Nt;i++){
         for(int j=1; j<Nx; j++){
             PSI[i+1][j] = PSI[i][j]+D*dT*(PSI[i][j+1]-2*PSI[i][j]+PSI[i][j-1])/pow(dX,2)+dT*S;
         }

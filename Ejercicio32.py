@@ -4,9 +4,6 @@ import matplotlib.pyplot as plt
 
 difusion = np.loadtxt("difusion.dat")
 
-xlab = [-1.0,-0.5,0.0,0.5,1.0]
-tlab = [1.0,0.8,0.6,0.4,0.2,0.0]
-
 plt.figure(figsize=(15,4))
 
 time = difusion[:,0]

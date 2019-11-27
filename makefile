@@ -1,11 +1,11 @@
-difusion.png : Ejercicio29.py difusion.dat
-	python Ejercicio29.py
+onda.png : Ejercicio32.py onda.dat
+	python Ejercicio32.py
 
-difusion.dat : Ejercicio29.x
-	./Ejercicio29.x 
+onda.dat : Ejercicio32.x
+	./Ejercicio32.x 
 
-Ejercicio29.x : Ejercicio29.cpp
-	c++ Ejercicio29.cpp -o Ejercicio29.x
+Ejercicio32.x : Ejercicio32.cpp
+	c++ Ejercicio32.cpp -o Ejercicio32.x
 	
 clean : 
-	rm Ejercicio29.x difusion.dat difusion.png 
+	rm Ejercicio32.x onda.dat onda.png 
