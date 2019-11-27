@@ -6,7 +6,7 @@ Onda = np.loadtxt("onda.dat")
 fig = plt.figure(figsize=(15,4))
 
 time = np.linspace(0,6,np.shape(Onda)[0])
-x = np.linspace(0.0, 1.0, np.shape(data)[1])
+x = np.linspace(0.0, 1.0, np.shape(Onda)[1])
 X, Time = np.meshgrid(x,time)
 
 plt.subplot(1,3,1)
