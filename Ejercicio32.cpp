@@ -50,7 +50,7 @@ int ONDA(int Nt,int Nx,string nombre){
     
     for(int i=0; i<=Nt; i++){
         for(int j=0; j<=Nx; j++){
-            outfile<<PSI[i][j]<<"\t";
+            outfile<<Onda[i][j]<<"\t";
         }
         outfile<<endl;
     }
