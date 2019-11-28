@@ -3,9 +3,11 @@
 #include <cmath>
 using namespace std;
 
-double C = 0.5;
-double Tmax = 6;
-double dT = 0.01;
+double Tension = 40;
+double rho = 0.01;
+double C = pow(Tension/rho,0.5);
+double Tmax = 0.1;
+double dT = 0.001;
 double Xmax = 1;
 double dX = 0.01;
 double Cprima = dX/dT;
@@ -29,11 +31,13 @@ int ONDA(int Nt,int Nx,string nombre){
 
     for(int j=0;j<=Nx;j++){
         x = j*dX;
-        Onda[0][j] = sin(M_PI*x/Xmax);
+        Onda[0][j] = pow(10,-4)*sin(2*M_PI*x/Xmax);
     }
     
-    Onda[1][0] = 0;
-    Onda[1][Nx] = 0;
+    for(int i=1;i<=Nt;i++){
+        Onda[i][0] = 0;
+        Onda[i][Nx] = 0;
+    }
     
     for(int j=1;j<Nx;j++){
         Onda[1][j] = Onda[0][j]+pow(C/Cprima,2)*(Onda[0][j+1]+Onda[0][j-1]-2*Onda[0][j])/2;
